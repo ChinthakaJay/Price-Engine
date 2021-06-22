@@ -16,7 +16,7 @@ import java.math.BigDecimal;
  * @E-mail jgcjayarathne@gmail.com
  * @Telephone +94761743256
  * @created on 2021-06-22
-*/
+ */
 
 @Entity
 @NoArgsConstructor

@@ -6,10 +6,10 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @author Chinthaka Jayarathne
- * @E-mail chinthaka.jayarathne@axiatadigitallabs.com
+ * @E-mail jgcjayarathne@gmail.com
  * @Telephone +94761743256
  * @created on 2021-06-22
- * @company Axiata Digital Labs (pvt)Ltd.
+
  */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {

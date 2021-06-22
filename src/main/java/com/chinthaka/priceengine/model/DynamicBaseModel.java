@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * @E-mail jgcjayarathne@gmail.com
  * @Telephone +94761743256
  * @created on 2021-06-22
-*/
+ */
 
 @MappedSuperclass
 @JsonIgnoreProperties(value = {"created_date", "last_modified_date"}, allowGetters = true)
