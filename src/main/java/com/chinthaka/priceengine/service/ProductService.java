@@ -16,5 +16,5 @@ import java.util.List;
 public interface ProductService {
     List<ProductDto> getProductList() throws PriceEngineException;
 
-    PriceDto getPrice(int i, long l);
+    PriceDto getPrice(Integer productId, Long quantity) throws PriceEngineException;
 }
