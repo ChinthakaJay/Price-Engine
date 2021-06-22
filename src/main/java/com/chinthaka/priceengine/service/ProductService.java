@@ -1,6 +1,7 @@
 package com.chinthaka.priceengine.service;
 
 import com.chinthaka.priceengine.dto.ProductDto;
+import com.chinthaka.priceengine.exception.PriceEngineException;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ import java.util.List;
  * @company Axiata Digital Labs (pvt)Ltd.
  */
 public interface ProductService {
-    List<ProductDto> getProductList();
+    List<ProductDto> getProductList() throws PriceEngineException;
 }
