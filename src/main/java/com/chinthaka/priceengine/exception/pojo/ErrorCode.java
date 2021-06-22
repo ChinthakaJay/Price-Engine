@@ -10,6 +10,7 @@ public enum ErrorCode {
 
     PENG001("PENG001"), //Empty database
     PENG002("PENG002"), //Product not found for getting price
+    PENG003("PENG003"), //Product not found for calculating  price list
 
     PENGXXX("PENGXXX"); // !!!Unforeseen exception !!!
 

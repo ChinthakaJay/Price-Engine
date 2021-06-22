@@ -115,4 +115,25 @@ public class ProductServiceTest {
 
         assertEquals(exception.getErrorCode(), ErrorCode.PENG002);
     }
+
+    @Test
+    void Given_ValidProductId_Should_ReturnPriceDtoList_When_getPriceListMethodCalled() throws PriceEngineException {
+        when(productRepository.findOneById(2)).thenReturn(product2);
+
+        List<PriceDto> result = productService.getPriceList(2);
+
+        assertFalse(CollectionUtils.isEmpty(result));
+        assertEquals(50, result.size());
+
+    }
+
+    @Test
+    void Given_InValidProductId_Should_ThrowException_When_getPriceListMethodCalled() {
+        when(productRepository.findOneById(anyInt())).thenReturn(null);
+        PriceEngineException exception = assertThrows(PriceEngineException.class, () -> {
+            productService.getPriceList(5);
+        });
+
+        assertEquals(exception.getErrorCode(), ErrorCode.PENG003);
+    }
 }

@@ -17,4 +17,6 @@ public interface ProductService {
     List<ProductDto> getProductList() throws PriceEngineException;
 
     PriceDto getPrice(Integer productId, Long quantity) throws PriceEngineException;
+
+    List<PriceDto> getPriceList(Integer productId) throws PriceEngineException;
 }

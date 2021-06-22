@@ -19,6 +19,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 /**
  * @author Chinthaka Jayarathne
@@ -67,6 +68,22 @@ public class ProductServiceImpl implements ProductService {
                     "Product does not exists", "Product not found for id: " + productId);
         }
         return new PriceDto(quantity, calculatePrice(product, quantity));
+    }
+
+    @Override
+    public List<PriceDto> getPriceList(Integer productId) throws PriceEngineException {
+        Product product = productRepository.findOneById(productId);
+        if (ObjectUtils.isEmpty(product)) {
+            throw new PriceEngineException(HttpStatus.BAD_REQUEST,
+                    ErrorCode.PENG003,
+                    "Product does not exists", "Getting price list product not found for id: " + productId);
+        }
+
+        List<PriceDto> priceDtoList = LongStream.range(1, 51).parallel()
+                .mapToObj(i -> new PriceDto(i, calculatePrice(product, i)))
+                .collect(Collectors.toList());
+        log.info("price list created successfully size: {}", priceDtoList.size());
+        return priceDtoList;
     }
 
     private BigDecimal calculatePrice(Product product, Long quantity) {
