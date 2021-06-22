@@ -6,8 +6,11 @@ import com.chinthaka.priceengine.exception.pojo.ErrorCode;
 import com.chinthaka.priceengine.model.Product;
 import com.chinthaka.priceengine.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
@@ -27,7 +30,8 @@ import static org.mockito.Mockito.when;
  * @company Axiata Digital Labs (pvt)Ltd.
  */
 
-
+@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class ProductServiceTest {
 
     private static final Product product1 = new Product("Product1", 20, new BigDecimal("175"));
