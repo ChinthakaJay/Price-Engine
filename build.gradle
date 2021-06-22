@@ -27,6 +27,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 
+	implementation group: 'mysql', name: 'mysql-connector-java'
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.5.9'
 
 	compileOnly 'org.projectlombok:lombok'
