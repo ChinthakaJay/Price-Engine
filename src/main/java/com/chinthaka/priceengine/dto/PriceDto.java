@@ -15,5 +15,5 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class PriceDto {
     private long quantity;
-    private BigDecimal price;
+    private String price;
 }
