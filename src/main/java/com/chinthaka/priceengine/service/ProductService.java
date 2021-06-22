@@ -1,5 +1,6 @@
 package com.chinthaka.priceengine.service;
 
+import com.chinthaka.priceengine.dto.PriceDto;
 import com.chinthaka.priceengine.dto.ProductDto;
 import com.chinthaka.priceengine.exception.PriceEngineException;
 
@@ -14,4 +15,6 @@ import java.util.List;
  */
 public interface ProductService {
     List<ProductDto> getProductList() throws PriceEngineException;
+
+    PriceDto getPrice(Integer productId, Long quantity) throws PriceEngineException;
 }

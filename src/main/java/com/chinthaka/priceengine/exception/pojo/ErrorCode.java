@@ -9,6 +9,7 @@ package com.chinthaka.priceengine.exception.pojo;
 public enum ErrorCode {
 
     PENG001("PENG001"), //Empty database
+    PENG002("PENG002"), //Product not found for getting price
 
     PENGXXX("PENGXXX"); // !!!Unforeseen exception !!!
 
