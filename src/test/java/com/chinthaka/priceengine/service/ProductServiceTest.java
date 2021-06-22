@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
@@ -41,7 +42,7 @@ public class ProductServiceTest {
     @Autowired
     private ProductService productService;
 
-    @Mock
+    @MockBean
     private ProductRepository productRepository;
 
     @Test
