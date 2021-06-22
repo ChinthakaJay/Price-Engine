@@ -1,5 +1,6 @@
 package com.chinthaka.priceengine.service.implementations;
 
+import com.chinthaka.priceengine.dto.PriceDto;
 import com.chinthaka.priceengine.dto.ProductDto;
 import com.chinthaka.priceengine.exception.PriceEngineException;
 import com.chinthaka.priceengine.exception.pojo.ErrorCode;
@@ -42,5 +43,10 @@ public class ProductServiceImpl implements ProductService {
                 product.getName())).collect(Collectors.toList());
         log.info("Product list retrieved, size: {}", productDtoList.size());
         return productDtoList;
+    }
+
+    @Override
+    public PriceDto getPrice(int i, long l) {
+        return null;
     }
 }

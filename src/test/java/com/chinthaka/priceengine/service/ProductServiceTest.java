@@ -1,5 +1,6 @@
 package com.chinthaka.priceengine.service;
 
+import com.chinthaka.priceengine.dto.PriceDto;
 import com.chinthaka.priceengine.dto.ProductDto;
 import com.chinthaka.priceengine.exception.PriceEngineException;
 import com.chinthaka.priceengine.exception.pojo.ErrorCode;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 /**
@@ -65,4 +67,53 @@ public class ProductServiceTest {
         assertEquals(exception.getErrorCode(), ErrorCode.PENG001);
     }
 
+    @Test
+    void Given_ValidProductIdAndQuantityIsWholeCartoonBelowMinimum_Should_ReturnPriceDto_When_getPriceMethodCalled() throws PriceEngineException {
+        when(productRepository.findOneById(1)).thenReturn(product1);
+
+        PriceDto result = productService.getPrice(1, 40L);
+
+        assertNotNull(result);
+        assertEquals(new BigDecimal("350.000"), result.getPrice());
+    }
+
+    @Test
+    void Given_ValidProductIdAndQuantityIsWholeCartoonAboveMinimum_Should_ReturnPriceDto_When_getPriceMethodCalled() throws PriceEngineException {
+        when(productRepository.findOneById(1)).thenReturn(product1);
+
+        PriceDto result = productService.getPrice(1, 100L);
+
+        assertNotNull(result);
+        assertEquals(new BigDecimal("787.500"), result.getPrice());
+    }
+
+    @Test
+    void Given_ValidProductIdAndQuantityIsWholeCartoonPlusSingleUnitsBelowMinimum_Should_ReturnPriceDto_When_getPriceMethodCalled() throws PriceEngineException {
+        when(productRepository.findOneById(1)).thenReturn(product1);
+
+        PriceDto result = productService.getPrice(1, 45L);
+
+        assertNotNull(result);
+        assertEquals(new BigDecimal("406.875"), result.getPrice());
+    }
+
+    @Test
+    void Given_ValidProductIdAndQuantityIsWholeCartoonPlusSingleUnitsAboveMinimum_Should_ReturnPriceDto_When_getPriceMethodCalled() throws PriceEngineException {
+        when(productRepository.findOneById(1)).thenReturn(product1);
+
+        PriceDto result = productService.getPrice(1, 102L);
+
+        assertNotNull(result);
+        assertEquals(new BigDecimal("810.250"), result.getPrice());
+    }
+
+    @Test
+    void Given_InValidProductId_Should_ThrowException_When_getPriceMethodCalled() {
+        when(productRepository.findOneById(anyInt())).thenReturn(null);
+        PriceEngineException exception = assertThrows(PriceEngineException.class, () -> {
+            productService.getPrice(5, 100L);
+        });
+
+        assertEquals(exception.getErrorCode(), ErrorCode.PENG002);
+    }
 }
