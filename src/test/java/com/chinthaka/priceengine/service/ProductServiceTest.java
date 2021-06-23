@@ -73,7 +73,7 @@ public class ProductServiceTest {
         PriceDto result = productService.getPrice(1, 40L);
 
         assertNotNull(result);
-        assertEquals(new BigDecimal("350.000"), result.getPrice());
+        assertEquals("350.000", result.getPrice());
     }
 
     @Test
@@ -83,7 +83,7 @@ public class ProductServiceTest {
         PriceDto result = productService.getPrice(1, 100L);
 
         assertNotNull(result);
-        assertEquals(new BigDecimal("787.500"), result.getPrice());
+        assertEquals("787.500", result.getPrice());
     }
 
     @Test
@@ -93,7 +93,7 @@ public class ProductServiceTest {
         PriceDto result = productService.getPrice(1, 45L);
 
         assertNotNull(result);
-        assertEquals(new BigDecimal("406.875"), result.getPrice());
+        assertEquals("406.875", result.getPrice());
     }
 
     @Test
@@ -103,7 +103,7 @@ public class ProductServiceTest {
         PriceDto result = productService.getPrice(1, 102L);
 
         assertNotNull(result);
-        assertEquals(new BigDecimal("810.250"), result.getPrice());
+        assertEquals("810.250", result.getPrice());
     }
 
     @Test
