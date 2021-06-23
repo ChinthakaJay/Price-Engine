@@ -41,6 +41,9 @@ public class ProductServiceImpl implements ProductService {
     @Value("${discount}")
     private double discount;
 
+    @Value("${price.decimal-places}")
+    private int priceDecimalPlaces;
+
     @Autowired
     private ProductRepository productRepository;
 
@@ -66,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
                     ErrorCode.PENG002,
                     "Product does not exists", "Product not found for id: " + productId);
         }
-        return new PriceDto(quantity, calculatePrice(product, quantity));
+        return new PriceDto(quantity, calculatePrice(product, quantity).toString());
     }
 
     @Override
@@ -79,7 +82,7 @@ public class ProductServiceImpl implements ProductService {
         }
 
         List<PriceDto> priceDtoList = LongStream.range(1, 51).parallel()
-                .mapToObj(i -> new PriceDto(i, calculatePrice(product, i)))
+                .mapToObj(i -> new PriceDto(i, calculatePrice(product, i).toString()))
                 .collect(Collectors.toList());
         log.info("price list created successfully size: {}", priceDtoList.size());
         return priceDtoList;
@@ -101,6 +104,6 @@ public class ProductServiceImpl implements ProductService {
 
         return cartoonPrice.add(product.getPricePerCartoon()
                 .multiply(BigDecimal.valueOf(singleUnits * (1 + singleUnitMarkup) / product.getUnitsPerCartoon())))
-                .setScale(3, RoundingMode.CEILING);
+                .setScale(priceDecimalPlaces, RoundingMode.CEILING);
     }
 }
